@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> cat </title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../static/js/shares.js"  charset="utf-8" defer></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h2>
+        <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/a.jpg') }}">
+    </h2>
+    <div id="app">{{ message }} ss </div>
+    
+    <script>
+    </script>
+    <!-- <footer>
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloVajor </a></small>
+    </footer> -->
+
+</body>
+
+</html>

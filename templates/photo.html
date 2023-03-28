@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-cn" data-cw-private-path-prefix="" data-cw-private-build-number="2311Hotfix27" data-cw-private-mastering-number="2311Hotfix27"><head><meta http-equiv="Content-Security-Policy" content="base-uri 'self'; object-src 'none'; script-src blob: 'self' *.apple.com *.apple-cloudkit.com *.cdn-apple.com 'sha256-JFJvxqMr7d0c5kvkhpyFwvNHHhwfiIFw0UaFnTp+u9M=' 'sha256-gtNiGyNhVKlsR696zwmvR7bA/dHp3sAZRgsHnBh1PD4=' 'sha256-viY0bjyESUG5EQZrpm8pHv71rsma9EGuNGpcQr5dxUE=' 'sha256-svdOQzSg9T05h6Q3mC/8FCU+2bG3vWTBwdPa+czq+YY=' 'sha256-HenvlWVrAISuwfRzCus0xoCe+m4/jV6vXViy4FodZC8=' 'sha256-j+MPyRRzXn+sXeNXPMgpIKLOLAivxYQmD/MBxcVBphk=' 'sha256-8y/2xvtcq0nNBwiEjJplE+Pz/2OuzWTYjm2Ft808Oxg='; style-src 'self' data: *.apple.com 'unsafe-inline'; default-src 'none'; child-src blob: 'self'; connect-src blob: 'self' data: *.icloud.com *.icloud.com.cn *.apple.com *.cdn-apple.com *.icloud-content.com *.icloud-content.com.cn *.apple-mapkit.com; form-action 'self' *.apple.com *.icloud.com *.icloud.com.cn; frame-src blob: 'self' mailto: tel: *.icloud.com *.icloud.com.cn *.apple.com *.icloud-content.com *.icloud-content.com.cn *.icloud-sandbox.com; font-src blob: 'self' data: *.icloud.com *.icloud.com.cn *.apple.com *.cdn-apple.com; img-src blob: 'self' data: *.icloud.com *.icloud.com.cn *.apple.com *.cdn-apple.com *.icloud-content.com *.icloud-content.com.cn *.apple-mapkit.com; media-src blob: 'self' data: *.icloud.com *.icloud.com.cn *.apple.com *.cdn-apple.com *.icloud-content.com *.icloud-content.com.cn">
+        
+            
+                <script type="text/javascript">
+                    (function() {
+                        var html = document.documentElement;
+                        var buildNumberAttribute = 'data-cw-private-build-number';
+                        var masteringNumberAttribute = 'data-cw-private-mastering-number';
+
+                        window._BUILD_INFO_FOR_GLOBAL_ERROR_HANDLERS = {
+                            buildNumber: html.getAttribute(buildNumberAttribute),
+                            masteringNumber: html.getAttribute(masteringNumberAttribute),
+                            locale: html.getAttribute("lang")
+                        };
+                        window._BUILD_INFO_FOR_GLOBAL_ERROR_HANDLERS.jsFiles = [];
+                    })();
+                </script>
+                
+                    <script type="text/javascript">
+                        window._BUILD_INFO_FOR_GLOBAL_ERROR_HANDLERS.jsFiles.push("/system/icloud.com/2311Hotfix27/zh-cn/main.js");
+                    </script>
+                
+                <script type="text/javascript">"use strict";var _CW_BUILD_INFO=window._BUILD_INFO_FOR_GLOBAL_ERROR_HANDLERS,filterIndexHtml=".*\\/index\\.html",filterMainJs=".*("+_CW_BUILD_INFO.jsFiles.join("|")+")",regexIndexHtml=new RegExp(filterIndexHtml),regexMainJs=new RegExp(filterMainJs);function logMessageToParent(a,b){if(!(window&&window.parent&&window===window.parent||!window.parent.postMessage)){var c=window.location.pathname,d=_CW_BUILD_INFO.buildNumber,e=_CW_BUILD_INFO.masteringNumber;window.parent.postMessage(JSON.stringify({appName:c,buildNumber:d,masteringNumber:e,args:[a,b],isCloudOSMessage:!0,methodName:"recordApplicationMessage"}),"*")}}function buildMessageFromErrorEvent(a){var b=a.detail,c=b.error;return{error:c&&c.message?c.message:b.message,url:b.filename,lineNumber:b.lineno,columnNumber:b.colno,stack:c?c.stack:"not available"}}function defaultErrorFilter(a){var b=a.filename;if(!b||regexIndexHtml.test(b)){var c=a.error&&a.error.stack;if(c){var d=c.split("\n");b=d[1]||d[0]}}return regexMainJs.test(b)}function defaultFatalErrorHandler(a){var b=buildMessageFromErrorEvent(a);b.isFatal=!0,logMessageToParent("OnFatalError",b)}function defaultNonFatalErrorHandler(a){var b=buildMessageFromErrorEvent(a);b.isFatal=!1,logMessageToParent("OnNonFatalError",b)}function buildMessageFromRejectionEvent(a){var b=a.detail,c=b.nativeEvent.reason,d=c.stack||{};if("string"!=typeof d)return{error:"unknown"};var e=d.split("\n"),f=1<e.length?e[0]:e[0].substring(0,80),g=(e[1]||e[0]).match(/at (.*\/main\.js):([0-9]+):([0-9]+)/);return g?{error:f,url:g[1],lineNumber:g[2],columnNumber:g[3],stack:d}:{error:f,stack:d}}function defaultUnhandledRejectionFilter(a){var b=a.reason;if(b){var c,d=b.stack,e=b.sourceURL;if(e)c=e;else if(d){var f=d.split("\n");c=f[1]||f[0]}return regexMainJs.test(c)}return!1}function defaultFatalUnhandledRejectionHandler(a){var b=buildMessageFromRejectionEvent(a);b.isFatal=!0,logMessageToParent("OnFatalUnhandledRejection",b)}function defaultNonFatalUnhandledRejectionHandler(a){var b=buildMessageFromRejectionEvent(a);b.isFatal=!1,logMessageToParent("OnNonFatalUnhandledRejection",b)}window.__globalErrorCatcherDefaults={defaultErrorFilter:defaultErrorFilter,defaultFatalErrorHandler:defaultFatalErrorHandler,defaultNonFatalErrorHandler:defaultNonFatalErrorHandler,defaultUnhandledRejectionFilter:defaultUnhandledRejectionFilter,defaultFatalUnhandledRejectionHandler:defaultFatalUnhandledRejectionHandler,defaultNonFatalUnhandledRejectionHandler:defaultNonFatalUnhandledRejectionHandler};</script>
+            
+            <script type="text/javascript">"use strict";try{var event=new window.CustomEvent("test",{cancelable:!0});event.preventDefault()}catch(a){var PolyFillCustomEvent=function(a,b){var c;return b=b||{bubbles:!1,cancelable:!1,detail:void 0},c=document.createEvent("CustomEvent"),c.initCustomEvent(a,b.bubbles,b.cancelable,b.detail),c};PolyFillCustomEvent.prototype=window.Event.prototype,window.CustomEvent=PolyFillCustomEvent}var globalDefaults=window.__globalErrorCatcherDefaults,defaultErrorFilter=globalDefaults.defaultErrorFilter,defaultFatalErrorHandler=globalDefaults.defaultFatalErrorHandler,defaultNonFatalErrorHandler=globalDefaults.defaultNonFatalErrorHandler,defaultUnhandledRejectionFilter=globalDefaults.defaultUnhandledRejectionFilter,defaultFatalUnhandledRejectionHandler=globalDefaults.defaultFatalUnhandledRejectionHandler,defaultNonFatalUnhandledRejectionHandler=globalDefaults.defaultNonFatalUnhandledRejectionHandler;(function(){function a(a){var c,d="";d=b(a)?"FatalError":"NonFatalError",c=new CustomEvent(d,{detail:{error:a.error,message:a.message,filename:a.filename,lineno:a.lineno,colno:a.colno}}),window.dispatchEvent(c)}var b=defaultErrorFilter;window.addEventListener("FatalError",defaultFatalErrorHandler),window.addEventListener("NonFatalError",defaultNonFatalErrorHandler),window.addEventListener("error",a),window.__startFilteringErrors=function(a,c,d){b=a,window.removeEventListener("FatalError",defaultFatalErrorHandler),window.removeEventListener("NonFatalError",defaultNonFatalErrorHandler),c&&d&&(window.addEventListener("FatalError",c),window.addEventListener("NonFatalError",d)),window.__startFilteringErrors=function(){throw new Error("__startFilteringErrors can currently only be invoked once")}}})(),function(){function a(a){var c,d="";d=b(a)?"FatalUnhandledRejection":"NonFatalUnhandledRejection",c=new CustomEvent(d,{detail:{nativeEvent:a}}),window.dispatchEvent(c)}var b=defaultUnhandledRejectionFilter;window.addEventListener("FatalUnhandledRejection",defaultFatalUnhandledRejectionHandler),window.addEventListener("NonFatalUnhandledRejection",defaultNonFatalUnhandledRejectionHandler),window.addEventListener("unhandledrejection",a),window.__startFilteringUnhandledRejections=function(a,c,d){b=a,window.removeEventListener("FatalUnhandledRejection",defaultFatalUnhandledRejectionHandler),window.removeEventListener("NonFatalUnhandledRejection",defaultNonFatalUnhandledRejectionHandler),c&&d&&(window.addEventListener("FatalUnhandledRejection",c),window.addEventListener("NonFatalUnhandledRejection",d)),window.__startFilteringUnhandledRejections=function(){throw new Error("__startFilteringUnhandledRejections can currently only be invoked once")}}}();</script>
+        
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="登录 iCloud 以访问你的照片、视频、文稿、备忘录、通讯录及更多内容。要开始使用 Apple 服务，请使用你的 Apple ID 或创建新的帐户。">
+        <meta name="keywords" content="icloud, free, apple">
+        <meta name="og:title" content="iCloud.com">
+        <meta name="og:image" content="https://www.icloud.com/icloud_logo/icloud_logo.png">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="google" content="notranslate">
+        <meta name="theme-color" content="rgb(251, 251, 253)">
+        
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="/system/icloud.com/current/static/apple-touch-icon.png">
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="/system/icloud.com/current/static/apple-touch-icon-120x120.png">
+        
+        <link rel="apple-touch-icon" sizes="152x152" href="/system/icloud.com/current/static/apple-touch-icon-152x152.png">
+        
+        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/system/icloud.com/current/static/apple-touch-icon-precomposed.png">
+        
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/system/icloud.com/current/static/apple-touch-icon-120x120-precomposed.png">
+        
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/system/icloud.com/current/static/apple-touch-icon-152x152-precomposed.png">
+        
+        <link rel="icon" type="image/png" sizes="32x32" href="/system/icloud.com/current/static/favicon-32x32.png">
+        
+        <link rel="icon" type="image/png" sizes="16x16" href="/system/icloud.com/current/static/favicon-16x16.png">
+        
+        <link rel="mask-icon" sizes="any" color="#898989" href="/system/icloud.com/current/static/safari-pinned-tab.svg">
+        
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>iCloud</title>
+        
+        <style id="cw-bootstrap-css">html {
+    background-color: rgb(251, 251, 253);
+}
+
+#apple-logo,
+#gcbd-logo {
+    margin-left: -2px; /* stylelint-disable-line */
+}
+
+html[dir="rtl"] #apple-logo,
+html[dir="rtl"] #gcbd-logo {
+    margin-left: 0; /* stylelint-disable-line */
+    margin-right: -2px; /* stylelint-disable-line */
+}
+</style>
+        <link rel="icon" href="/favicon.ico">
+        
+        <script type="text/javascript">
+            (function() {
+                var html = document.documentElement;
+                var pathPrefixAttribute = 'data-cw-private-path-prefix';
+                var buildNumberAttribute = 'data-cw-private-build-number';
+                var masteringNumberAttribute = 'data-cw-private-mastering-number';
+
+                window.__CW_PATH_PREFIX = html.getAttribute(pathPrefixAttribute);
+                window.__CW_BUILD_INFO = {
+                    buildNumber: html.getAttribute(buildNumberAttribute),
+                    masteringNumber: html.getAttribute(masteringNumberAttribute),
+                    locale: html.getAttribute("lang")
+                };
+
+                html.removeAttribute(pathPrefixAttribute);
+                html.removeAttribute(buildNumberAttribute);
+                html.removeAttribute(masteringNumberAttribute);
+            })();
+        </script>
+        
+            
+        <script type="text/javascript" class="cw-head-scripts">
+            (function(o,e,t){var r=navigator&&navigator.userAgent;if(r){var a,n,s,i=r.toLowerCase(),w="PointerEvent"in window,f="createTouch"in document||"Touch"in window,l=w?navigator.maxTouchPoints>0:f,p=!!/mac/.test(i)&&!/like mac/.test(i),c=p&&!(p&&l),d=!!i.match(/\b(iPad|iPhone|iPod)\b.*\bOS (\d+)_(\d+)/i);if(c&&(a=i.match(/mac os x (\d+)[ _.](\d+)/)),d&&(a=i.match(/\b(iPad|iPhone|iPod)\b.*\bOS (\d+)_(\d+)/i)),a&&(n=a[1]?parseInt(a[1],10):null,s=a[2]?parseInt(a[2],10):null),null===n)return!1;if(c){if(n>10)return!0;if(10===n&&s>=14)return!0}return!!(d&&n>=12)}})()||(function(){var o=window.navigator.language.toLocaleLowerCase(),[e]=o.split("-"),t={"zh-cn":"|SF+Pro+SC,v1","zh-hk":"|SF+Pro+HK,v1","zh-mo":"|SF+Pro+HK,v1","zh-tw":"|SF+Pro+TC,v1",ar:"|SF+Pro+AR,v3",ja:"|SF+Pro+JP,v1",ko:"|SF+Pro+KR,v2",th:"|SF+Pro+TH,v2"},r=t[o]||t[e]||"",a=document.createElement("link");a.rel="stylesheet",a.media="all",a.href="//www.apple.com/wss/fonts/?families=SF+Pro,v3"+r,a.type="text/css",document.head.appendChild(a)}(),function(o,e){for(var t=0,r=o.length;t<r;t++){var a=o[t],n=document.createElement("link");n.rel="preload",n.as="font",n.href=a,n.type="font/woff2",n.crossOrigin=!0,document.head.appendChild(n)}}(["//www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_regular.woff2","//www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_regular.woff2","//www.apple.com/wss/fonts/SF-Pro-Display/v3/sf-pro-display_semibold.woff2","//www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_semibold.woff2","//www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_light.woff2","//www.apple.com/wss/fonts/SF-Pro-Text/v3/sf-pro-text_bold.woff2"]));
+        </script>
+            
+        
+    </head>
+
+    <body>
+        <div class="init-content" aria-hidden="true" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 16px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+    ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="90" height="31" aria-hidden="true" id="apple-logo" fill="#1D1D1F">
+        <path d="M77.005 23.215c1.568 0 2.767-.779 3.382-2.06h.061V23H83V8.204h-2.552v5.793h-.061c-.615-1.302-1.855-2.092-3.392-2.092-2.726 0-4.479 2.143-4.479 5.65v.01c0 3.497 1.742 5.65 4.489 5.65Zm.768-2.153c-1.64 0-2.654-1.333-2.654-3.497v-.01c0-2.163 1.025-3.496 2.654-3.496 1.568 0 2.675 1.374 2.675 3.496v.01c0 2.133-1.096 3.497-2.675 3.497Zm-13.05 2.153c1.64 0 2.757-.758 3.32-1.917h.052V23h2.552V12.13h-2.552v6.297c0 1.579-.933 2.635-2.398 2.635-1.455 0-2.173-.872-2.173-2.41v-6.521h-2.552v7.024c0 2.522 1.363 4.06 3.751 4.06Zm-10.826 0c3.187 0 5.257-2.122 5.257-5.65v-.02c0-3.507-2.1-5.64-5.267-5.64-3.157 0-5.248 2.154-5.248 5.64v.02c0 3.518 2.06 5.65 5.258 5.65Zm.01-2.06c-1.63 0-2.665-1.303-2.665-3.59v-.02c0-2.256 1.056-3.568 2.645-3.568 1.619 0 2.664 1.302 2.664 3.568v.02c0 2.277-1.035 3.59-2.644 3.59ZM44.137 23h2.55V8.204h-2.55V23Zm-8.357.256c3.402 0 5.913-2.102 6.292-5.137l.02-.102H39.5l-.031.102c-.482 1.825-1.804 2.84-3.69 2.84-2.572 0-4.232-2.07-4.232-5.362v-.01c0-3.282 1.65-5.343 4.233-5.343 1.926 0 3.228 1.056 3.658 2.748l.051.195h2.593l-.01-.103c-.39-3.014-2.89-5.137-6.292-5.137-4.243 0-6.938 2.912-6.938 7.64v.01c0 4.727 2.685 7.66 6.938 7.66ZM25.424 10.572a1.4 1.4 0 1 0 0-2.8c-.799 0-1.424.626-1.424 1.406 0 .759.625 1.394 1.424 1.394ZM24.144 23h2.551V12.13h-2.552V23Z"></path>
+        <path d="M12.9 7.598c.608-.737 1.04-1.74 1.04-2.755 0-.14-.013-.28-.038-.394-.99.038-2.183.66-2.893 1.498-.559.635-1.079 1.65-1.079 2.666 0 .153.026.305.038.356.064.012.165.025.267.025.888 0 2.004-.597 2.664-1.396Zm.697 1.612c-1.484 0-2.69.901-3.464.901-.825 0-1.903-.85-3.197-.85C4.486 9.26 2 11.292 2 15.113c0 2.387.914 4.9 2.056 6.526.977 1.37 1.827 2.5 3.057 2.5 1.218 0 1.751-.812 3.261-.812 1.536 0 1.878.787 3.223.787 1.332 0 2.22-1.218 3.058-2.425.939-1.383 1.332-2.729 1.345-2.793-.076-.025-2.626-1.066-2.626-3.986 0-2.526 2.004-3.656 2.118-3.745-1.32-1.904-3.337-1.955-3.895-1.955Z" opacity=".569"></path>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="164" height="44" id="gcbd-logo" fill="#1D1D1F" style="display: none">
+        <path d="M76.412 18.106h-4.69v-2.072h-1.484v2.072h-4.69V28.9h1.456v-.812h7.952v.812h1.456V18.106Zm-9.408 8.568v-3.108h3.234v3.108h-3.234Zm4.718 0v-3.108h3.234v3.108h-3.234Zm-4.718-4.452v-2.73h3.234v2.73h-3.234Zm4.718-2.73h3.234v2.73h-3.234v-2.73Zm8.008-2.814v1.414h10.08v-1.414H79.73Zm-1.358 3.85v1.456h4.452c-1.344 2.702-2.436 4.354-3.276 4.97a1.707 1.707 0 0 1-.35.154l.378 1.484c3.29-.238 6.328-.546 9.114-.938.252.476.476.938.686 1.414l1.316-.924c-.7-1.386-1.68-3.024-2.94-4.9l-1.176.728c.504.798.966 1.582 1.4 2.352a94.323 94.323 0 0 1-6.608.7c.896-1.036 1.918-2.716 3.08-5.04h6.622v-1.456H78.372Zm18.634-4.522v11.046h-4.858v1.428h12.586v-1.428h-6.216v-5.474h5.18v-1.414h-5.18v-4.158zm8.848 4.508v1.232h12.572v-1.232h-5.558v-.588h4.074v-3.052h-4.074v-.826h-1.456v.826h-4.046v3.052h4.046v.588h-5.558Zm9.688-1.708h-2.674v-.812h2.674v.812Zm-4.13 0h-2.646v-.812h2.646v.812Zm5.39 3.486h-9.184v4.382h1.414v-3.122h6.342v2.954h1.428v-4.214Zm-5.222 1.75c-.098 1.274-.476 2.17-1.12 2.674-.728.532-2.254.84-4.55.924l.588 1.33c2.772-.21 4.494-.672 5.194-1.386.672-.546 1.12-1.68 1.316-3.402l-1.428-.14Zm1.708 2.254-.742 1.106c1.736.406 3.416.966 5.04 1.694l.784-1.232c-1.526-.616-3.22-1.134-5.082-1.568Zm7.308-6.902a16.381 16.381 0 0 1-1.022 4.032l1.316.448c.462-1.33.784-2.716.952-4.144l-1.246-.336Zm5.754-2.87v11.97h1.4v-7.812c.42.854.798 1.82 1.148 2.898l1.176-.602c-.42-1.246-.91-2.38-1.47-3.416l-.854.392v-3.43h-1.4Zm3.864-.448V28.97h1.386V16.076h-1.386Zm-5.502 3.612-.91.406v-3.906h-1.386v4.326c-.028 3.444-.798 5.95-2.31 7.518l1.092.966c1.68-1.764 2.548-4.536 2.604-8.316.448.896.854 1.918 1.218 3.052l1.176-.602a22.955 22.955 0 0 0-1.484-3.444Zm9.828-3.584-1.022.966c1.008.812 1.778 1.568 2.324 2.268l1.05-1.036a18.064 18.064 0 0 0-2.352-2.198Zm7.966 12.628h3.206l.364-1.442c-.392.028-.938.056-1.652.084-.728 0-1.428.014-2.128.014-1.064 0-2.002-.014-2.8-.028-.812-.028-1.414-.14-1.82-.35-.322-.182-.644-.462-.952-.826l-.14-.14V20.71h-3.206v1.344h1.848v3.836c-.56.308-1.176 1.022-1.876 2.142l1.078 1.008c.7-1.26 1.176-1.89 1.442-1.89.168 0 .336.112.518.35.406.476.882.798 1.442.966.588.14 1.316.224 2.212.238.882.014 1.708.028 2.464.028Zm-4.242-12.082v1.344h6.608V16.65h-6.608Zm-.896 3.15v1.386h2.786c-1.036 2.436-1.834 3.738-2.394 3.906l.364 1.274c2.422-.252 4.382-.574 5.894-.966.14.378.266.77.406 1.19l1.302-.322c-.56-1.652-1.204-3.108-1.932-4.396l-1.19.392c.322.602.63 1.232.91 1.89-1.036.266-2.282.49-3.752.686.616-.896 1.232-2.114 1.848-3.654h4.284V19.8h-8.526Zm12.278 1.26v3.066h7.392V21.06h-7.392Zm6.048 1.988h-4.704v-.896h4.704v.896Zm2.646 1.736h-9.954v4.186h1.428v-.518h7.112v.518h1.414v-4.186Zm-8.526 2.436v-1.232h7.112v1.232h-7.112Zm-2.59-10.388v1.274h2.982v.672h1.456v-.672h3.276v.672h1.456v-.672h2.982v-1.274h-2.982v-.812h-1.456v.812h-3.276v-.812h-1.456v.812h-2.982Zm11.914 2.31h-11.676v2.94h1.4v-1.708h8.876v1.638h1.4v-2.87ZM1.407 29.5h2.55V18.423h-2.55V29.5Zm1.28-12.832c.412 0 .763-.144 1.05-.43a1.41 1.41 0 0 0 .432-1.033c0-.407-.144-.753-.432-1.038a1.44 1.44 0 0 0-1.05-.426c-.407 0-.756.142-1.046.426-.291.285-.437.63-.437 1.038 0 .401.146.745.437 1.032.29.287.64.43 1.046.43Zm9.915 13.156c1.14 0 2.157-.21 3.052-.631a5.723 5.723 0 0 0 2.188-1.758c.563-.752.908-1.624 1.037-2.619l.007-.091h-2.594l-.021.076a3.576 3.576 0 0 1-.713 1.465 3.35 3.35 0 0 1-1.258.943c-.5.219-1.065.328-1.695.328-.847 0-1.582-.22-2.204-.663-.623-.442-1.103-1.07-1.441-1.884-.338-.813-.507-1.776-.507-2.886v-.016c0-1.115.17-2.076.507-2.886.338-.81.817-1.434 1.439-1.875.62-.44 1.354-.66 2.199-.66.634 0 1.201.117 1.702.351.501.235.92.565 1.257.99.338.425.572.926.705 1.505l.026.105h2.59l-.004-.093c-.118-1.006-.46-1.895-1.028-2.668a5.874 5.874 0 0 0-2.204-1.819c-.901-.439-1.916-.658-3.044-.658-1.405 0-2.619.311-3.642.935-1.022.624-1.812 1.511-2.368 2.663-.556 1.152-.834 2.523-.834 4.113v.016c0 1.588.278 2.958.834 4.11.555 1.154 1.346 2.043 2.372 2.669 1.026.625 2.24.938 3.642.938Zm8.034-.324h2.55V14.24h-2.55zm9.534.222c1.1 0 2.049-.231 2.846-.693.797-.461 1.413-1.122 1.846-1.982.434-.86.65-1.886.65-3.08v-.02c0-1.191-.218-2.216-.655-3.074a4.68 4.68 0 0 0-1.852-1.98c-.798-.46-1.744-.691-2.838-.691-1.086 0-2.03.23-2.829.694a4.692 4.692 0 0 0-1.855 1.981c-.438.859-.656 1.882-.656 3.07v.02c0 1.191.216 2.217.65 3.078.434.86 1.05 1.522 1.85 1.984.8.462 1.747.693 2.843.693Zm.004-2.066c-.572 0-1.063-.146-1.472-.436-.408-.291-.722-.711-.941-1.261-.219-.55-.329-1.213-.329-1.99v-.02c0-.776.11-1.438.33-1.985.22-.548.535-.967.944-1.259.408-.291.896-.437 1.461-.437.571 0 1.06.145 1.469.436.408.29.721.71.941 1.258.22.549.33 1.21.33 1.987v.02c0 .776-.11 1.438-.328 1.988-.218.55-.53.97-.936 1.262-.406.29-.896.437-1.469.437Zm10.596 2.066c.816 0 1.502-.172 2.058-.517a3.148 3.148 0 0 0 1.237-1.41h.13V29.5h2.55V18.423h-2.55v6.444c0 .543-.097 1.018-.292 1.425a2.167 2.167 0 0 1-.848.945c-.37.223-.82.334-1.346.334-.754 0-1.307-.216-1.657-.647-.35-.431-.526-1.063-.526-1.894v-6.607h-2.55v7.166c0 .867.144 1.61.433 2.228.289.618.716 1.09 1.281 1.416.566.326 1.259.489 2.08.489Zm12.084-.024c.787 0 1.473-.176 2.058-.527a3.448 3.448 0 0 0 1.338-1.46h.13V29.5h2.55V14.24h-2.55v5.997h-.13a3.409 3.409 0 0 0-1.347-1.472c-.6-.36-1.284-.54-2.055-.54-.932 0-1.739.232-2.42.694-.681.463-1.207 1.122-1.579 1.978-.371.855-.557 1.873-.557 3.055v.016c0 1.175.186 2.19.559 3.049.372.858.9 1.52 1.585 1.984.684.464 1.49.697 2.418.697Zm.783-2.15c-.566 0-1.054-.145-1.466-.432-.412-.287-.728-.699-.95-1.235-.22-.536-.33-1.174-.33-1.913v-.016c0-.742.11-1.38.331-1.912.222-.533.539-.944.95-1.232.412-.288.9-.432 1.465-.432.56 0 1.046.146 1.46.436.413.29.735.703.964 1.237.228.534.343 1.169.343 1.906v.016c0 .732-.114 1.366-.34 1.902-.227.536-.548.95-.963 1.24-.415.29-.903.434-1.464.434Z"></path>
+    </svg>
+    <div style="flex: 1"></div>
+    <svg viewBox="0 0 92.09 19.581" xmlns="http://www.w3.org/2000/svg" width="19" height="19">
+        <path d="M19.678 9.815c0-5.42-4.395-9.765-9.912-9.765C4.395.05 0 4.396 0 9.815c0 5.42 4.395 9.766 9.766 9.766 5.517 0 9.912-4.346 9.912-9.766Zm36.133 0A9.732 9.732 0 0 0 46.045.05c-5.37 0-9.717 4.346-9.717 9.765 0 5.42 4.346 9.766 9.717 9.766a9.732 9.732 0 0 0 9.766-9.766Zm36.279 0A9.732 9.732 0 0 0 82.324.05c-5.517 0-9.863 4.346-9.863 9.765 0 5.42 4.346 9.766 9.863 9.766a9.732 9.732 0 0 0 9.766-9.766Z"></path>
+    </svg>
+</div>
+
+        <script type="text/javascript" id="cw-bootstrap-js">// check if cn domain and display cn domain toolbar logo
+if (window.location.host.endsWith(".com.cn")) {
+    document.getElementById("apple-logo").style.display = "none";
+    document.getElementById("gcbd-logo").style.display = "block";
+}
+
+// If we fail on creating a new URL, we need to immediately redirect to the /browser_unsupported/ page.
+try {
+    // eslint-disable-next-line @icloudweb/safe/no-new-url, no-new, no-restricted-globals -- grandfathered legacy code
+    new URL(window.location.origin);
+} catch (e) {
+    window.location.replace(`${origin}/unsupported_browser/`);
+}
+
+// #region rtl detection
+
+/** From @apple/localization to support RTL tagging. */
+const rtlLocales = [
+    "ar", // Arabic
+    "iw", // Legacy code for Hebrew
+    "he", // New code for Hebrew
+    "ur", // Urdu
+    "fa", // Persian
+    "sd", // Sindhi
+];
+
+/** Get whether the given locale is an RTL language. */
+const isRTL = (locale) => rtlLocales.some((l) => locale.startsWith(l));
+
+/** Get HTML `dir` attribute value for directionality of the given locale. */
+const getDir = (localeId) => (isRTL(localeId) ? "rtl" : "ltr");
+
+// #endregion
+
+(function () {
+    const { performance } = window;
+    if (performance && performance.mark) {
+        performance.mark("chunk-main-dom-creation");
+    }
+
+    const docEl = document.documentElement;
+    const currentLocale = docEl.getAttribute("lang") || "en-us";
+    docEl.setAttribute("dir", getDir(currentLocale));
+
+    // #region Early validate
+
+    function uuidString() {
+        if (crypto.randomUUID) return crypto.randomUUID();
+
+        const bytes = crypto.getRandomValues(new Uint8Array(16));
+
+        // Set the appropriate bits
+        // Set time_hi_and_version field to 0100 (13th hex digit -> 4)
+        bytes[6] = (bytes[6] & 0xf) | 0x40;
+        // Tweak clock_seq_hi_and_reserved field (17th hex digit -> 8, 9, a or b)
+        bytes[8] = (bytes[8] & 0x3f) | 0x80;
+
+        let ret = "";
+        for (let i = 0; i < 16; ++i) {
+            ret += bytes[i].toString(16).padStart(2, "0");
+            // Add the appropriate dashes.
+            if (i === 3 || i === 5 || i === 7 || i === 9) {
+                ret += "-";
+            }
+        }
+        return ret;
+    }
+
+    async function earlyFetchAuthenticationDetails(clientId) {
+        const hostname = window.location.hostname;
+        /** Note: if changing this, keep [ALL_ICLOUD_ENV_NAMES](src/Utils/envs.ts) in sync! */
+        const validHostnames = [
+            "www.icloud.com",
+            "www.icloud.com.cn",
+            "beta.icloud.com",
+            "future.icloud.com",
+            "carry.icloud.com",
+            "sprinkles.icloud.com",
+        ];
+        if (!validHostnames.includes(hostname)) return null;
+
+        // ssoRedirect skipping validate call in order to call fetchCentralizedWebToken() in 1FA mode.
+        const pathname = window.location.pathname;
+        const invalidPathnames = ["/ssoRedirect"];
+        if (invalidPathnames.includes(pathname)) return null;
+
+        const servicesDomain =
+            hostname === "www.icloud.com.cn" ? "icloud.com.cn" : "icloud.com";
+
+        const url = `https://setup.${servicesDomain}/setup/ws/1/validate?clientBuildNumber=${window.__CW_BUILD_INFO.buildNumber}&clientMasteringNumber=${window.__CW_BUILD_INFO.masteringNumber}&clientId=${clientId}`;
+        const response = await (async () => {
+            try {
+                // eslint-disable-next-line no-restricted-syntax -- init.js is too soon to have apiRequest
+                return await window.fetch(url, {
+                    method: "POST",
+                    credentials: "include",
+                });
+            } catch (e) {
+                return null;
+            }
+        })();
+        if (!response) return null;
+
+        if (
+            response.status !== 200 &&
+            response.status !== 401 &&
+            response.status !== 421 &&
+            response.status !== 403
+        ) {
+            return [response, null];
+        }
+
+        const jsonBody = await (async () => {
+            try {
+                return await response.json();
+            } catch (e) {
+                return null;
+            }
+        })();
+
+        if (performance && performance.measure) {
+            performance.measure("Early Validation");
+        }
+        return [response, jsonBody];
+    }
+    window.__earlyClientId = uuidString();
+    window.__earlyValidationPromise = earlyFetchAuthenticationDetails(
+        window.__earlyClientId
+    );
+
+    // #endregion
+    // #region Preconnect and DNS prefetch
+
+    const fullHostname = window.location.hostname;
+    const validHostnames = [
+        "www.icloud.com",
+        "www.icloud.com.cn",
+        "beta.icloud.com",
+        "future.icloud.com",
+        "carry.icloud.com",
+        "sprinkles.icloud.com",
+    ];
+    if (!validHostnames.includes(fullHostname)) return;
+
+    ["gateway", "ckdatabasews", "cvws.icloud-content"].forEach((host) => {
+        const preconnectLinkTag = document.createElement("link");
+        const dnsPreFetchLinkTag = document.createElement("link");
+
+        let href = "";
+        if (host.includes(".")) {
+            // if it has a "." from the list above we are assuming
+            // only the TLD stays the same (e.g. ".com" or ".com.cn")
+            const topLevelDomain = fullHostname.slice(
+                fullHostname.indexOf(".com") + 1
+            );
+            href = `https://${host}.${topLevelDomain}`;
+        } else {
+            // Remove the subdomain from the host e.g 'www'.
+            const domain = fullHostname.slice(fullHostname.indexOf(".") + 1);
+            href = `https://${host}.${domain}`;
+        }
+
+        preconnectLinkTag.href = href;
+        preconnectLinkTag.rel = "preconnect";
+        preconnectLinkTag.setAttribute("crossorigin", "");
+
+        dnsPreFetchLinkTag.href = href;
+        dnsPreFetchLinkTag.rel = "dns-prefetch";
+
+        document.head.appendChild(preconnectLinkTag);
+        document.head.appendChild(dnsPreFetchLinkTag);
+    });
+
+    // #endregion
+    // #region Home page wallpaper prefetch
+
+    const elem = document.createElement("canvas");
+    const type =
+        // Detect webp support (https://stackoverflow.com/a/27232658)
+        elem.getContext &&
+        elem.getContext("2d") &&
+        elem.toDataURL("image/webp").startsWith("data:image/webp")
+            ? (document.documentElement.setAttribute("data-supports-webp", ""),
+              "webp")
+            : "jpeg";
+    const linkElement = document.createElement("link");
+    linkElement.rel = "preload";
+    linkElement.as = "image";
+    linkElement.href = `/system/icloud.com/current/static/wallpaper.${type}`;
+    linkElement.type = `image/${type}`;
+    document.head.append(linkElement);
+
+    // #endregion
+})();
+</script>
+        
+        
+            <script type="text/javascript" src="https://cdn.apple-cloudkit.com/ck/2/cloudkit.js"></script>
+        
+
+        
+                    <script type="text/javascript" src="/system/icloud.com/2311Hotfix27/zh-cn/main.js" defer=""></script>
+                
+                    <link rel="stylesheet" href="/system/icloud.com/2311Hotfix27/zh-cn/main.css">
+                
+
+    
+
+</body></html>
