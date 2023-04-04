@@ -246,17 +246,16 @@ var userSettings = {"url":"\/","uid":"0","time":"1679988899","secure":"1"};
             <div class="main-img">
               {% for name,address,serial_number,girl,date,level,keywords,description in images %}
                 <div>
-                  <img src="{{ url_for('static', filename = '/images/girls/' + address) }}" alt="serial_number">
+                  <img src="{{ url_for('static', filename = 'images/girls/' + address) }}" alt="serial_number">
                 </div>
               {% endfor %}
             </div>
             <ul class="thumb-img">
+              {% for name,address,serial_number,girl,date,level,keywords,description in images %}
                 <li>
-                  <img src="https://shootest.jp/wp-content/uploads/2021/03/d11d4b3908c72afc5089f6e7d271c450-116x78.jpg" alt="serial_number">
+                  <img src="{{ url_for('static', filename = 'images/girls_thumbnail/' + address) }}" alt="serial_number">
                 </li>
-                <li>
-                  <img src="https://shootest.jp/wp-content/uploads/2021/03/3beb9b2e74b39e40da3564121583d38d-116x78.jpg" alt="SEI ARROWS 糸島ロジスティクス＆ショールーム">
-                </li>
+              {% endfor %}
             </ul>
           </div><!-- studio-info-img -->
                       <div class="studio-comment si-inner">

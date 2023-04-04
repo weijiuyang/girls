@@ -25,12 +25,12 @@ def girl():
     if page == None:
         page = 1
     albumns = getgirl(girl,page)
-    return render_template('girl.html', albumns = albumns)
+    return render_template('girl.html', girl = girl, page = page, albumns = albumns)
 
 @app.route('/albumn', methods=['GET', 'POST'])
 def albumn():
     albumn_id = request.args.get('albumn_id') 
-    images = getalbumn(albumn_id)[:2]
+    images = getalbumn(albumn_id)[:20]
     return render_template('albumnview.html', images = images)
 
 
