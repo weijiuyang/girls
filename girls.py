@@ -12,6 +12,12 @@ def user_page(name):
     return f'User: {escape(name)}'
 
 
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    albumn_id = 917
+    images = getalbumn(albumn_id)
+    return render_template('test3.html', images = images)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
@@ -30,7 +36,7 @@ def girl():
 @app.route('/albumn', methods=['GET', 'POST'])
 def albumn():
     albumn_id = request.args.get('albumn_id') 
-    images = getalbumn(albumn_id)[:20]
+    images = getalbumn(albumn_id)
     return render_template('albumnview.html', images = images)
 
 

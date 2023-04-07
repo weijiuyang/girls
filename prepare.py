@@ -231,7 +231,22 @@ def createalbum(girl = None):
                 print(os.path.join(albumpath,imagename))
                 # exit()
                 os.rename(photopath,os.path.join(albumpath,imagename))
+                realimagepahth  = os.path.join(albumpath,imagename)
                 print(serial_number,imagename)
+                # 打开原始图像
+                image = Image.open(realimagepahth)
+
+                width, height = image.size
+
+
+
+                while max(width,height)> 4000:
+                    ratio = 0.5  # 缩放比例
+                    width = int(width * ratio)
+                    height = int(height * ratio)
+                    new_size = (width, height)
+                    image = image.resize(new_size)
+                    image.save(realimagepahth, quality=90)
                 address = os.path.join(albumpath,imagename).lstrip(girl_path)
 
                 sql = "select id from image where name = '%s' and serial_number = %s" % (name,serial_number)
@@ -254,15 +269,11 @@ def createalbum(girl = None):
                 mydb.commit()
         createthumbnail(girl)
                 
-                # exit()
-
-        
-
 
 if __name__ == "__main__":
+    pass
     mycursor = mydb.cursor()
-    createalbum("蠢沫沫")
-    # pass
+    # createalbum("过期米线")
     # getalbumncover()
     # createthumbnail('蠢沫沫')
 

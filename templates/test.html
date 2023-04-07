@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,shrink-to-fit=yes">
+  <meta name="format-detection" content="telephone=no">
+	<!-- This site is optimized with the Yoast SEO plugin v18.6 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>PHOTOS ---THE ART OF BEAUTY</title>
+	<meta name="description" content="家具のショールーム兼倉庫を撮影にご利用いただけます。自然光も豊富に入り撮影のしやすい環境。倉庫も実際に稼働しているエリアなので、よりリアルな雰囲気で撮影が可能。撮影スタジオには背景壁が用意されており大型商品のブツ撮りが可能です。車両の搬入や室内でのドローン飛行も可能で自由度の高い空間です。" />
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- 引入 jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- 引入 Slick CSS 文件 -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- 引入 Swiper JavaScript 文件 -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<link rel='stylesheet' id='slick-css'  href="{{ url_for('static', filename = 'test.css') }}" type='text/css' media='all' />
+
+<script type='text/javascript' src="{{ url_for('static', filename = '/js/test.js') }}"  id='slick-js'></script>
+</head>
+<body>
+</div>
+
+<div id="main-container">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for name,address,serial_number,girl,date,level,keywords,description in images %}
+            <div class="swiper-slide">
+                <img  src="{{ url_for('static', filename = 'images/girls/' + address) }}" alt="{{serial_number}}">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-scrollbar"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <!-- 显示缩略图和滚动条的div元素 -->
+    <div class="swiper-container-thumbnails">
+        <div class="swiper-wrapper">
+            {% for name,address,serial_number,girl,date,level,keywords,description in images %}
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename = 'images/girls_thumbnail/' + address) }}" alt="{{serial_number}}">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>>
+</body>
+</html>

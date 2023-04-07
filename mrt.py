@@ -53,7 +53,6 @@ for site in sites:
 
     page_link=site
     print(page_link)
-    # break_flag=0
     #获得前几页写真
     for page in range(1,page_num_argv):
         if not page == 1:
@@ -61,8 +60,6 @@ for site in sites:
         #得到当前页更新的所有写真
         r_page = requests.get(page_link, headers=headers,verify = False)  # 向目标url地址发送get请求，返回一个response对象
         r_page.encoding='utf-8'
-        # text_page=BeautifulSoup(r_page.text, 'lxml')
-        # print(r_page.text)
         text_page=BeautifulSoup(r_page.text, 'html.parser')
 
         info_suit = text_page.find_all('li', class_='related_box') 
@@ -72,14 +69,10 @@ for site in sites:
             title=info.a['title']
             print(link,title)
             album_html = html_short + link
-            # album_html = r'https://www.xgmn02.com/Girlt/Girlt11500.html'
             album_page = requests.get(album_html, headers=headers,verify = False)  # 向目标url地址发送get请求，返回一个response对象
             print(html_short + link)
             album_page.encoding='utf-8'
-            # text_page=BeautifulSoup(r_page.text, 'lxml')
-            # print(r_page.text)
             album_soup=BeautifulSoup(album_page.text, 'html.parser')
-            # print(album_soup)
             keywords,description,institution_name,serialnumber,mnname=keys(album_soup)
             print(keywords,description,institution_name,serialnumber,mnname)
             sql = "select keywords from information where institution = '%s' and serial_number = '%s'" % (institution_name,serialnumber)

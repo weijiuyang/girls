@@ -71,6 +71,8 @@
 
 .studio-info-img .main-img img, .studio-info-img .thumb-img img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .main-img .slick-prev, .main-img .slick-next {

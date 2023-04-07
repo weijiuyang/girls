@@ -8,8 +8,6 @@ def getgirls():
     girls_name = os.listdir(girl_path)
     girls = []
     for girl in girls_name:
-        onegirl = []
-        onegirl.append(girl)
         girlpath = os.path.join(girl_path,girl)
         mainimgpath = os.path.join(girlpath,".mainimg")
         mainimgs = os.listdir(mainimgpath)
@@ -32,7 +30,7 @@ def getgirls():
             
             mainpath = "../static/images/girls/" + onemainimgpathnew.lstrip(girl_path)
         # print(onegirl)
-        girls.append([onegirl,mainpath])
+        girls.append([girl,mainpath])
     print(girls)
     # girls = ""
     return girls
