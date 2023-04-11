@@ -1,5 +1,9 @@
 
 var swiper = new Swiper('.swiper-container', {
+    effect: 'fade', // 添加此行来设置淡入淡出效果
+    fadeEffect: {
+        crossFade: true, // 添加此行来实现淡入淡出效果的交叉渐变
+    },   
   scrollbar: {
       el: '.swiper-scrollbar',
   },
@@ -16,6 +20,10 @@ var swiper = new Swiper('.swiper-container', {
           el: '.swiper-container-thumbnails',
           slidesPerView: 5,
           spaceBetween: 10,
+          effect: 'fade', // 添加此行来设置淡入淡出效果
+          fadeEffect: {
+              crossFade: true, // 添加此行来实现淡入淡出效果的交叉渐变
+          },   
           breakpoints: {
               640: {
                   slidesPerView: 3,
@@ -37,17 +45,8 @@ swiper.controller.control = swiper.thumbs.swiper;
 
 
 
-const thumbnails = document.querySelector('.swiper-container-thumbnails');
-const mainswiper = document.querySelector('.swiper-container');
-// const header = document.querySelector('header');
-// const wrapper = document.querySelector('#wrapper');
 
-mainswiper.addEventListener('click', function() {
-  if (thumbnails.style.display === 'none') {
-    thumbnails.style.display = 'block';
-  } else {
-    thumbnails.style.display = 'none';
-  }
-});
+
+
 
 

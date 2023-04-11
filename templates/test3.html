@@ -18,6 +18,9 @@
         .swiper-container {
             width: 100%;
             height: 100%;
+            display: grid;
+            align-items: center;
+            justify-items: center;
         }
         .swiper-slide {
             text-align: center;
@@ -35,19 +38,45 @@
             -webkit-align-items: center;
             -ms-flex-align: center;
             align-items: center;
+            position: relative; /* 添加相对定位 */
         }
-        .gallery-top img {
-            display: block;
+        .gallery-top {
+            /* display: block; */
             width: 100%;
             height: auto;
+            position: relative;
+
         }
+        .gallery-top img {
+            /* display: block; */
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+
+        }
+        .gallery-thumbs {
+            width: 100vw; /* vw 表示视窗宽度的百分比 */
+            overflow: hidden; /* 隐藏容器外部的滚动条 */
+            position: relative;
+            /* display: grid;
+            justify-content: center;
+            align-items: center; */
+            /* height: 80px; */
+        }
+
         .gallery-thumbs img {
             width: 100%;
             height: auto;
+            object-fit: cover;
+            /* position: absolute; */
         }
-        .swiper-pagination {
+
+        /* .gallery-thumbs .swiper-slide {
+            width: 80px;
+            } */
+        /* .swiper-pagination {
             bottom: 20px;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -62,7 +91,7 @@
             {% endfor %}
         </div>
         <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-pagination"></div> -->
     </div>
 
     <!-- Swiper Gallery Thumbs -->
@@ -82,16 +111,22 @@
     <script>
         var galleryTop = new Swiper('.gallery-top', {
             spaceBetween: 10,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
+            centeredSlides: true,
+
+            // pagination: {
+            //     el: '.swiper-pagination',
+            //     clickable: true,
+            // },
+            effect: 'fade', // 添加此行来设置淡入淡出效果
+            fadeEffect: {
+                crossFade: true, // 添加此行来实现淡入淡出效果的交叉渐变
+    },   
         });
         var galleryThumbs = new Swiper('.gallery-thumbs', {
             spaceBetween: 10,
             centeredSlides: true,
             slidesPerView: 10,
-            touchRatio: 0.2,
+            touchRatio: 0.1,
             slideToClickedSlide: true,
             freeMode: true,
             watchSlidesVisibility: true,
@@ -99,6 +134,7 @@
             scrollbar: {
                 el: '.swiper-scrollbar',
                 draggable: true,
+                dragSize: '90%', // 设置为屏幕宽度的百分之九十
             },
         });
         galleryTop.controller.control = galleryThumbs;
