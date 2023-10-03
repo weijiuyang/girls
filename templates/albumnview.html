@@ -71,6 +71,15 @@
                 object-fit: cover;
             }
         }
+        .favorite-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
         .gallery-thumbs {
             width: 100vw; /* vw 表示视窗宽度的百分比 */
             overflow: hidden; /* 隐藏容器外部的滚动条 */
@@ -103,7 +112,8 @@
         <div class="swiper-wrapper">
             {% for name,address,serial_number,girl,date,level,keywords,description in images %}
             <div class="swiper-slide">
-                <img  src="{{ url_for('static', filename = 'images/girls/' + address) }}" alt="Image {{serial_number}}">
+                <button class="favorite-button">&#10084;</button>
+                <img  src="{{ url_for('static', filename = 'images/girls/' + address) }}" alt="Image {{serial_number}}" decoding="async">
             </div>
             {% endfor %}
         </div>
@@ -116,7 +126,7 @@
         <div class="swiper-wrapper">
             {% for name,address,serial_number,girl,date,level,keywords,description in images %}
             <div class="swiper-slide">
-                <img src="{{ url_for('static', filename = 'images/girls_thumbnail/' + address) }}" alt="Thumbnail {{serial_number}}">
+                <img src="{{ url_for('static', filename = 'images/girls_thumbnail/' + address) }}" alt="Thumbnail {{serial_number}}" decoding="async">
             </div>
             {% endfor %}
             <div class="swiper-scrollbar"></div>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Girls</title>
+  <link rel="manifest" href="/static/mainfest.json">
+  <script src="../static/js/girl.js"  charset="utf-8"></script>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='girlstyle.css') }}"> -->
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    .gallery {
+      width: 100vw;
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .img-contain {
+      position:relative;
+      display: inline-block;
+    }
+    .label-right {
+      font-size: 30px;
+            line-height: 25px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-Index: 2;
+            padding: 0 2em;
+            -webkit-transform-origin: left bottom;
+            -moz-transform-origin: left bottom;
+            transform-origin: left bottom;
+            text-indent: 0;
+            color: red;
+    }
+    .label-left {
+      font-size: 30px;
+            line-height: 25px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-Index: 2;
+            padding: 0 2em;
+            -webkit-transform-origin: left bottom;
+            -moz-transform-origin: left bottom;
+            transform-origin: left bottom;
+            text-indent: 0;
+            color:black;
+    }
+  </style>
+</head>
+<body bgcolor=black>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <div id="navbar">
+        sddsfsfs
+        <a href="javascript:void(0)"  onclick="openSideNav()">open</a>
+    </div>
+    <div id="mySidenav" class="sidenav">
+      <button>  aaaa </button>
+      <button>  aaaa </button>
+      <button>  aaaa </button>
+      <button>  aaaa </button>
+
+      <button>  aaaa </button>
+
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
+    </div>
+  <div class="gallery">
+    {% for id,name,address,serial_number,girl,date,level,keywords,description in images %}
+        <div class="img-contain">
+          <img id="img_{{id}}" src="{{ url_for('static', filename = 'images/girls/' + address) }}" alt="Image {{serial_number}}" decoding="async" onclick="opt({{ id }})" ondblclick="jump({{ id }})">
+          <button class="label-right" id ='favorite_{{id}}' {% if level < 60 %} style = "display:none" {% endif %} onclick="jump({{ id }})"> &hearts; </button>
+          <button class="label-left" id ='delete_{{id}}' style = "display:none"  onclick="delimg({{ id }})"> &#10006 </button>
+        </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function opt(id){
+        console.log(id)
+        var delete_id = 'delete_' + id
+        console.log(delete_id)
+        cur_delete = document.getElementById(delete_id)
+        if (cur_delete.style.display == 'none'){
+          cur_delete.style.display = 'block';
+        } else {
+          cur_delete.style.display = 'none';
+        }
+    }
+  </script>
+    <script>
+      function delimg(id){
+          console.log(id)
+          var delete_id = 'delete_' + id
+          console.log(delete_id)
+          cur_delete = document.getElementById(delete_id)
+          cur_delete.style.display = 'none';
+          var img_id = 'img_' + id
+          console.log(img_id)
+          cur_img = document.getElementById(img_id)
+          cur_img.style.display = 'none'
+          axios.post('/delimg', {
+                id: id
+            });
+      }
+    </script>
+  <script>
+        function jump(id){
+            console.log(id)
+            var favorite_id = 'favorite_' + id
+            console.log(favorite_id)
+            cur_favorite =document.getElementById(favorite_id)
+            var level = 50;
+            if (cur_favorite.style.display == 'none'){
+              cur_favorite.style.display = 'block';
+              level = 80;
+            } else {
+              cur_favorite.style.display = 'none';
+              level = 50;
+            }
+            axios.post('/favorite', {
+                id: id,
+                level: level
+            });
+        }
+  </script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var startX = 0;
+      var threshold = 50; // 滑动的阈值，可根据需要调整
+
+      window.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX;
+      });
+
+      window.addEventListener('touchend', function(event) {
+        var endX = event.changedTouches[0].clientX;
+        var deltaX = endX - startX;
+
+        if (deltaX > threshold && startX < 30) { // 滑动距离超过阈值且起始位置在屏幕左边缘附近
+          // 执行刷新操作
+          location.reload();
+          window.scrollTo(0, 0);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -87,6 +87,8 @@ def institutionrename(institution):
         return '桜桃喵'
     if institution  == '日奈娇':
         return '日奈娇'
+    if institution  == '发条少女':
+        return '发条少女'
     if '过期米线' in institution:
         return '过期米线'
 
@@ -94,6 +96,8 @@ def institutionrename(institution):
 
 def parsephoto(photo,albumn,girl):
     print(photo,albumn,girl)
+
+
     if "cover" in photo:
         return 0,albumn +' cover.jpg'
     for suffix in [".jpg",".png",".jpeg"]:

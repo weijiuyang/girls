@@ -43,16 +43,41 @@ def getgirl(girl,page):
 
 """"  girl 详情 """
 def getalbumn(albumn_id):
-    sql = "select name,address,serial_number,girl,date,level,keywords,description from image where albumn_id = '%s' and is_exist = 1" % (albumn_id)
+    sql = "select id,name,address,serial_number,girl,date,level,keywords,description from image where albumn_id = '%s' and is_exist = 1 order by serial_number" % (albumn_id)
     print(sql)
     
     mycursor.execute(sql)
     images = mycursor.fetchall()
     return images
 
+def randomalbumn():
+    sql = "select id from albumn where is_exist = 1 order by rand() limit 1" 
+    mycursor.execute(sql)
+    random_id = mycursor.fetchall()[0]
 
+    sql = "select id,name,address,serial_number,girl,date,level,keywords,description from image where albumn_id = %s and is_exist = 1" %random_id
+    print(sql)
+    
+    mycursor.execute(sql)
+    images = mycursor.fetchall()
+    print(images)
+    return images
 
+def favorite_sql(id,level=80):
+    # sql = "select level from albumn where id=%" % id 
+    # mycursor.execute(sql)
+    # level = mycursor.fetchall()[0]
 
+    sql = "update image set level = '%s' where id=%s" % (level, id)
+    print(sql)
+    mycursor.execute(sql)
+    mydb.commit()
+
+def delimg_sql(id):
+    sql = "update image set is_exist = 0 where id=%s" %  id
+    print(sql)
+    mycursor.execute(sql)
+    mydb.commit()
 
 def delete_essay(essay_id):
     sql = "update essay set is_exist = 0 where essay_id=%s" % essay_id

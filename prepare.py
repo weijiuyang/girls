@@ -5,6 +5,8 @@ from PIL import Image
 from extend import *
 import shutil
 from retrying import retry
+import subprocess
+
 
 def getmainimg():
     girls = os.listdir(girl_path)
@@ -23,37 +25,23 @@ def getmainimg():
             onemainimgpathnew = onemainimgpathnew.replace(')','')
 
             os.rename(onemainimgpathold,onemainimgpathnew)
-            image = Image.open(onemainimgpathnew)
-            # 缩小图片尺寸
-            width, height = image.size
-            while width > 1600:
-                width = int(width * 0.5)
-                height = int(height * 0.5)
-                resized_image = image.resize((width, height))
-
-                # 保存缩小后的图片文件
-                resized_image.save(onemainimgpathnew)
-
-
-
-            # 获取文件大小（以字节为单位）
-            file_size = os.stat(onemainimgpathnew).st_size
-
-            # 将字节数转换为Kilobytes并打印
-            print("File size is:", round(file_size/1024, 2), "KB")
-
-
-    print(girls)
-    # girls = ""
+            return_code = subprocess.run(['heif-enc', onemainimgpathnew])
+            print("return code:", return_code)
+            onemainimgpathnew = onemainimgpathnew.split('.')[0] + '.heic'
     return girls
 
 
 @retry
-def getalbumncover():
-    sql = "select address, photocount,id from albumn"
+def getalbumncover(girl = None):
+    if girl == None:
+        sql = "select address, photocount,id from albumn where is_exist = 1"
+    else:
+        sql = "select address, photocount,id from albumn where girl = '%s' and is_exist = 1" % girl
+    # sql = "select address, photocount,id from albumn"
     mycursor.execute(sql)
     result = mycursor.fetchall()
     print(result)
+
     for albumn in result:
         print(albumn)
         allpath = os.path.join(girl_path,albumn[0])
@@ -74,7 +62,6 @@ def getalbumncover():
                     width = int(width * 0.5)
                     height = int(height * 0.5)
                 resized_image = image.resize((width, height))
-
                 # 保存缩小后的图片文件
                 resized_image.save(coverpath)
         elif os.path.exists(os.path.join(allpath,albumn[0].split('/')[-1] + ' ' + '1.jpg')):
@@ -109,9 +96,8 @@ def createthumbnail(girl = None):
             print(photo)
             photopath = os.path.join(albumn_path,photo)
             print(photopath)
-            if os.path.isdir(photopath):
+            if os.path.isdir(photopath) or 'mov' in photo.lower() or 'mp4' in photo.lower():
                 continue
-
             thumbnail_photo_path = os.path.join(thumbnail_albumn_path,photo)
             if not os.path.exists(thumbnail_photo_path):
                 image = Image.open(photopath)
@@ -126,19 +112,22 @@ def createthumbnail(girl = None):
                     resized_image = image.resize((width, height))
 
                     # 保存缩小后的图片文件
-                    resized_image.save(thumbnail_photo_path)
+                    # maybe a gif or animate jpeg
+                    try:
+                        resized_image.save(thumbnail_photo_path)
+                    except:
+                        pass
 
 
-
-# print(getmainimg())
-
-def createalbum(girl = None):
+def createalbum(girl = None,albumn = None):
     if girl == None:
         girls = os.listdir(girl_path)
         createthumbnail()
         pass
     else:
         sql = "select * from girl where name = '%s' " % girl
+        # print(sql)
+        # exit()
         mycursor.execute(sql)
         result = mycursor.fetchall()
         if not result:
@@ -146,21 +135,25 @@ def createalbum(girl = None):
             print(sql)
             mycursor.execute(sql)
             mydb.commit()
-        # exit()
-        one_albumns = os.listdir(os.path.join(girl_path,girl))
-        print(one_albumns)
-        # exit()
+
         albumns = []
-        for albumn in one_albumns:
-            temppath = os.path.join(girl_path,girl,albumn)
-            if albumn[0] == '.' and not os.path.isdir(temppath):
-                os.remove(temppath)
-                # print(photo,'zzzzz')
-            elif albumn == '_gsdata_':
-                shutil.rmtree(temppath)
-            else:
-                albumns.append(albumn)
-        albumns = [ _ for _ in albumns if not _[0] == '.']
+        if albumn == None:
+            one_albumns = os.listdir(os.path.join(girl_path,girl))
+            one_albumns.sort()
+            print(one_albumns)
+            for albumn in one_albumns:
+                temppath = os.path.join(girl_path,girl,albumn)
+                if albumn[0] == '.' and not os.path.isdir(temppath):
+                    os.remove(temppath)
+                    # print(photo,'zzzzz')
+                elif albumn == '_gsdata_':
+                    shutil.rmtree(temppath)
+                elif albumn == '.mainimg':
+                    continue
+                else:
+                    albumns.append(albumn)
+        else:
+            albumns.append(albumn)
         print(albumns)
         # exit()
         for albumn in albumns:
@@ -168,16 +161,16 @@ def createalbum(girl = None):
             print(albumpath)
             address = albumpath.lstrip(girl_path)
             print(address)
-
-                # exit()
             institution,date,serial_number,name, photocount = parsealbumn(albumn,girl)
             print(institution,date,serial_number,name,photocount)
             # exit()
-            print()
-            sql = "select id from albumn where institution = '%s' and serial_number = '%s'" % (institution,serial_number)
+            sql = "select id from albumn where institution = '%s' and serial_number = '%s' and girl = '%s'" % (institution,serial_number,girl)
             print(sql)
+            # exit()
             mycursor.execute(sql)
             result = mycursor.fetchall()
+            # print(result)
+            # exit()
             if not result:
                 sql = "insert into albumn (institution,name,address,serial_number,girl,date,photocount,keywords,description)\
                       values ('%s','%s','%s','%s','%s','%s','%s','%s','%s')" % \
@@ -187,7 +180,7 @@ def createalbum(girl = None):
                 # print(date)
                 mycursor.execute(sql)
                 mydb.commit()
-                sql = "select id from albumn where institution = '%s' and serial_number = '%s'" % (institution,serial_number)
+                sql = "select id from albumn where institution = '%s' and serial_number = '%s' and girl = '%s'" % (institution,serial_number,girl)
                 # print(sql)
                 mycursor.execute(sql)
                 result = mycursor.fetchall()
@@ -197,7 +190,6 @@ def createalbum(girl = None):
             else:
                 # print(result)
                 albumn_id = result[0][0]
-
                 sql = "update albumn set photocount = %s  where institution = '%s' and serial_number = '%s'"% (photocount,institution,int(serial_number))
                 print(sql)
                 mycursor.execute(sql)
@@ -214,45 +206,51 @@ def createalbum(girl = None):
             for photo in photos:
                 photopath = os.path.join(albumpath,photo)
                 print(photopath)
+                # exit()
                 if os.path.isdir(photopath):
                     print(photopath,'album, not a photo,have passed')
                     continue
                 if photo[0] == '.':
                     os.remove(photopath)
                     print(photo,'hiddenfile, have delete ')
-
                     continue
                 if photopath[-4:] == '.txt' or photopath[-4:] == '.url':
                     print(photopath,'other file, have delete ')
                     os.remove(photopath)
                     continue
-                
+                if 'mov' in photo.lower() or 'mp4' in photo.lower():
+                    continue
+                # if photopath[-4:] == '.jpg' or photopath[-4:] == '.png':
+                #     print(photopath,'not heic, wait ')
+                #     # os.remove(photopath)
+                #     continue
                 serial_number,imagename = parsephoto(photo,albumn,girl)
-                print(os.path.join(albumpath,imagename))
+
+                if 'jpg' in photopath:
+                    print(os.path.join(albumpath,imagename))
+                    print('jpgjpg')
+                    # exit()
+
+                    os.rename(photopath,os.path.join(albumpath,imagename))
+                    realimagepahth  = os.path.join(albumpath,imagename)
+                    return_code = subprocess.run(['heif-enc', realimagepahth])
+                    print("return code:", return_code)
+                    os.remove(realimagepahth)
+                    address = realimagepahth.replace('jpg','heic').lstrip(girl_path)
                 # exit()
-                os.rename(photopath,os.path.join(albumpath,imagename))
-                realimagepahth  = os.path.join(albumpath,imagename)
-                print(serial_number,imagename)
-                # 打开原始图像
-                image = Image.open(realimagepahth)
-
-                width, height = image.size
+                else:
+                    address = photopath.lstrip(girl_path)
 
 
-
-                while max(width,height)> 4000:
-                    ratio = 0.5  # 缩放比例
-                    width = int(width * ratio)
-                    height = int(height * ratio)
-                    new_size = (width, height)
-                    image = image.resize(new_size)
-                    image.save(realimagepahth, quality=90)
-                address = os.path.join(albumpath,imagename).lstrip(girl_path)
-
-                sql = "select id from image where name = '%s' and serial_number = %s" % (name,serial_number)
+                sql = "select id from image where name = '%s' and serial_number = %s and girl = '%s'" % (name,serial_number, girl)
                 print(sql)
+                # exit()
                 mycursor.execute(sql)
                 result = mycursor.fetchall()
+                print(result)
+                print(address)
+
+                # exit()
                 if not result:
                     sql = "insert into image (name,address,albumn_id,serial_number,girl,date,keywords,description)\
                         values ('%s','%s',%s,%s,'%s','%s','%s','%s')" % \
@@ -262,18 +260,25 @@ def createalbum(girl = None):
                     mycursor.execute(sql)
                 else:
                     print(result)
-                    sql = "update image set albumn_id = %s where address = '%s' "% (albumn_id,address)
+                    sql = "update image set address = '%s' where name = '%s' and serial_number = %s and girl = '%s' and albumn_id = %s" % (address,name,serial_number, girl,albumn_id)
+                    # sql = "update image set albumn_id = %s where address = '%s' "% (albumn_id,address)
                     print(sql)
+                    # exit()
                     mycursor.execute(sql)
 
-                mydb.commit()
-        createthumbnail(girl)
+                    mydb.commit()
+        # createthumbnail(girl)
                 
 
 if __name__ == "__main__":
-    pass
     mycursor = mydb.cursor()
-    # createalbum("过期米线")
+    # createalbum("发条少女")
+    createalbum('蠢沫沫')
+
+    # createalbum('蠢沫沫', '蠢沫沫 NO.004 艾米利亚 [46P-591MB]')
+
     # getalbumncover()
+    # createthumbnail('日奈娇')
+
     # createthumbnail('蠢沫沫')
 

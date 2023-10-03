@@ -18,6 +18,29 @@ def test():
     images = getalbumn(albumn_id)
     return render_template('test3.html', images = images)
 
+@app.route('/new', methods=['GET', 'POST'])
+def new():
+    images = randomalbumn()
+    # albumn_id = 1042
+    # images = getalbumn(albumn_id)
+    # print(images)
+    return render_template('albumnnew.html', images = images)
+
+@app.route('/favorite', methods=['GET', 'POST'])
+def favorite():
+    val = request.get_json()
+    id = val["id"]
+    level = val["level"]
+    status = favorite_sql(id,level)
+    return r'success'
+
+@app.route('/delimg', methods=['GET', 'POST'])
+def delimg():
+    val = request.get_json()
+    id = val["id"]
+    status = delimg_sql(id)
+    return r'success'
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
@@ -41,7 +64,9 @@ def albumn():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='3333', debug=True)
+    # app.run(host='0.0.0.0', port='3333', debug=True)
+    app.run(host='::', port='3333', debug=True)
+
 
 
 
