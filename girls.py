@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request, url_for, redirect, flash
-from girlapi import * 
-from extend import * 
+# from girlapi import * 
+# from extend import * 
 from markupsafe import escape
 
 
@@ -11,6 +11,11 @@ app = Flask(__name__)
 def user_page(name):
     return f'User: {escape(name)}'
 
+
+@app.route('/xiutaku', methods=['GET', 'POST'])
+def xiutaku():
+    infos = ['cake','girl','beaty']
+    return render_template('xiutaku.html', infos=infos)
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():

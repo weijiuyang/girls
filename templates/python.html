@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>候选标的</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+        .app-title {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .section {
+            margin: 20px;
+        }
+        .game-title a {
+            text-decoration: none;
+        }        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .game-card {
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            width: 530px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .game-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover; /* 保持纵横比，同时填充整个元素的内容框 */
+            border-radius: 8px;
+        }
+
+        .game-title {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .game-title img {
+            height: 1em; /* 设置图片高度与当前字体大小相同 */
+            width: auto; /* 保持图片的宽高比 */
+            margin-right: 5px; /* 在图片和文字之间添加一些间隔 */
+        }
+
+        .game-description {
+            font-size: 14px;
+            color: #666;
+        }
+        .selected {
+            border: 2px solid #4c93af; 
+        }
+        #createButton {
+            display: none;
+            background-color: #111211; /* 绿色背景 */
+            color: white; /* 白色文字 */
+            padding: 10px 20px; /* 内边距 */
+            border: none; /* 无边框 */
+            border-radius: 5px; /* 圆角边框 */
+            cursor: pointer; /* 鼠标悬停时的手形光标 */
+            font-size: 16px; /* 字体大小 */
+            margin-top: 20px; /* 上边距 */
+            transition: background-color 0.3s; /* 背景颜色过渡效果 */
+        }
+    
+        #createButton:hover {
+            background-color: #51565b; /* 鼠标悬停时的背景颜色 */
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: 100px; /* 容器高度，根据需要调整 */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>stock</h1>
+    </div>
+
+    <div class="app-container">
+        {% for info in infos %} 
+            <div class="game-card" onclick="toggleSelect(this)">
+                <canvas id="myChart-{{ loop.index0 }}"></canvas>
+                <!-- <img z="../static/images/chatgpt.jpg" alt="Chatgpt app"> -->
+                <div class="game-title"> 
+                    <a href="{{ info['suffix']}}{{ info['code'] }}" target="_blank">
+                        <img src="../static/images/snow-1.png" alt="Chatgpt app">
+                    </a> 
+                    {{ info['code'] }}   {{ info['name'] }}
+                    <a href="https://haipitudou.com/stock/ashare/{{info['code']}}" target="_blank">
+                        <img src="../static/images/fries.ico" alt="fries">
+                    </a>
+                    PE: {{ info['pe'] }}
+                </div>
+                <p class="game-description" contenteditable="true" code="{{info['code']}}"> {{info['comment']}} </p>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="button-container">
+        <button id="createButton" style="display:none;" onclick="createSelected()">制作</button>
+    </div>
+    <script>
+        function toggleSelect(card) {
+            card.classList.toggle("selected");
+        
+            // 检查是否有任何卡片被选中
+            var selectedCards = document.querySelectorAll('.game-card.selected');
+            var createButton = document.getElementById('createButton');
+            if (selectedCards.length > 0) {
+                createButton.style.display = 'block';
+            } else {
+                createButton.style.display = 'none';
+            }
+        }
+        
+        function createSelected() {
+            var selectedCards = document.querySelectorAll('.game-card.selected');
+            var selectedData = Array.from(selectedCards).map(function(card) {
+                return card.querySelector('.game-title').innerText;
+            });
+        
+            // 发送选中内容到后端
+            console.log("Selected Games:", selectedData);
+            // 这里可以添加 AJAX 请求来发送数据到后端
+        }
+        
+    </script>
+    <script>
+        window.onload = function() {
+            {% for info in infos %}
+            var ctx = document.getElementById('myChart-{{ loop.index0 }}').getContext('2d');
+
+            var ratiovalues = {{ info['ratiovalues'] | tojson }};
+            var pricevalues = {{ info['pricevalues'] | tojson }};
+
+            var dataLables = {{ info['labels'] | tojson }};
+
+            var pointBackgroundColors = ratiovalues.map(value => value < 1 ? 'red' : 'rgba(0, 123, 255, 0.2)');
+        
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {{ info['labels'] | tojson }},
+                    datasets: [{
+                        label: 'ratio',
+                        data: ratiovalues,
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 1,
+                        pointBackgroundColor: pointBackgroundColors,
+                        yAxisID: 'y1'  // 指定使用左侧 Y 轴
+                    },
+                    {
+                        label: 'price',
+                        data:  pricevalues,
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1,
+                        //pointBackgroundColor: pointBackgroundColors,
+                        yAxisID: 'y2'  // 指定使用右侧 Y 轴
+                    }]
+                },
+                options: {
+                    scales: {
+                        y1: {
+                            beginAtZero: false,
+                            position: 'left',  // 左侧 Y 轴
+                        },
+                        y2: {
+                            beginAtZero: false,
+                            position: 'right',  // 右侧 Y 轴
+                            grid: {
+                                drawOnChartArea: false,  // 右侧 Y 轴不显示网格线
+                            }
+                        }
+                    }
+                }
+            });
+            {% endfor %}
+        };
+    </script>
+    <script>
+        document.querySelectorAll('.game-description').forEach(function(element) {
+            element.addEventListener('blur', function() {
+                var comment = this.innerText;
+                var code = this.getAttribute('code');
+                fetch('/comment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ comment: comment, code: code })
+                })
+                .then(response => response.json())
+                .then(data => console.log('Data saved successfully'))
+                .catch(error => console.error('Error:', error));
+            });
+        });
+        
+        </script>
+</body>
+</html>
