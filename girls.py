@@ -48,7 +48,8 @@ def delimg():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
+    infos = ['cake','girl','beaty']
+    return render_template('xiutaku.html', infos=infos)
     girls_list = getgirls()
     return render_template('girls.html', girls_list = girls_list)
 
