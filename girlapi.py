@@ -19,8 +19,7 @@ def getgirl(girl,page):
     # return None
     
     sql = "select id, institution,name,address,serial_number,girl,date,photocount,level,keywords,description from albumn where girl = '%s' and is_exist = 1 limit %s,12" % (girl,int(page)*12-12)
-    print(sql)
-    
+    print(sql)    
     mycursor.execute(sql)
     albumns = mycursor.fetchall()
     print(len(albumns))
@@ -36,8 +35,6 @@ def getgirl(girl,page):
         
     # print(albumns)
     print(len(albumns))
-
-
     return albumns
 
 

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简化版 HTML 模板</title>
-    <link href="styles.css" rel="stylesheet">
+    <title>GIRLS</title>
+    <link rel="manifest" href="{{ url_for('static', filename='girlmainfest.json') }}">
     <style>
         /* 基础样式重置 */
         * {
@@ -128,7 +128,7 @@
             border-radius: 8px;
             margin: 10px;
             padding: 15px;
-            width: 180px;
+            width: 160px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             text-align: center;
         }
@@ -198,39 +198,29 @@
     </header>
 
     <main>
-        <section class="content">
-            <article>
-                <header>
-                    <h1>内容标题</h1>
-                    <small>发布时间</small>
-                </header>
-                <div class="app-container">
-                    {% for info in infos %} 
-                        <div class="game-card" onclick="toggleSelect(this)">
-                            <img src="../static/images/dm3.JPG" alt="Chatgpt app">
+        <div class="app-container">
+            {% for info in infos %} 
+                <div class="game-card" onclick="toggleSelect(this)">
+                    <a href="xiutakugirl/{{ info }} ">
+                        <img src="{{ url_for('static', filename='prealbumn/' +  info + '.jpg' ) }}" alt="Chatgpt app">
+                    </a>
 
-                            <div class="game-title"> 
-                                {{ info['code'] }}   {{ info['name'] }}
-                                <a href="https://haipitudou.com/stock/ashare/{{info['code']}}" target="_blank">
-                                    <img src="../static/images/fries.ico" alt="fries">
-                                </a>
-                                PE: {{ info['pe'] }}
-                            </div>
-                            <p class="game-description" contenteditable="true" code="{{info['code']}}"> {{info['comment']}} </p>
-                        </div>
-                    {% endfor %}
-                </div>
-                <nav class="pagination">
-                    <div class="pagination-list">
-                        <a class="pagination-link" href="#">上一页</a>
-                        <a class="pagination-link" href="#">1</a>
-                        <a class="pagination-link" href="#">2</a>
-                        <!-- 更多分页链接 -->
-                        <a class="pagination-link" href="#">下一页</a>
+                    <div class="game-title"> 
+                        {{ info }} 
                     </div>
-                </nav>
-            </article>
-        </section>
+                    <p class="game-description" contenteditable="true" code="{{info['code']}}"> {{info['comment']}} </p>
+                </div>
+            {% endfor %}
+        </div>
+        <nav class="pagination">
+            <div class="pagination-list">
+                <a class="pagination-link" href="#">上一页</a>
+                <a class="pagination-link" href="#">1</a>
+                <a class="pagination-link" href="#">2</a>
+                <!-- 更多分页链接 -->
+                <a class="pagination-link" href="#">下一页</a>
+            </div>
+        </nav>
     </main>
 
     <footer>
@@ -238,5 +228,19 @@
             <a href="/">网站链接</a>
         </div>
     </footer>
+    <script>
+        function toggleSelect2(card) {
+            card.classList.toggle("selected");
+        
+            // 检查是否有任何卡片被选中
+            var selectedCards = document.querySelectorAll('.game-card.selected');
+            var createButton = document.getElementById('createButton');
+            if (selectedCards.length > 0) {
+                createButton.style.display = 'block';
+            } else {
+                createButton.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
