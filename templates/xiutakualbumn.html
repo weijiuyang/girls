@@ -3,12 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Girls</title>
-  <link rel="manifest" href="{{ url_for('static', filename='girlmainfest.json') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='mainfest.json') }}">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+    }
+    .header {
+      color: rgb(237, 233, 233);
+      text-align: center;
+      font-size: 36px;
+    }
+    .timestamp {
+      color: rgb(237, 233, 233);
+      font-size: 1.5em;
+      text-align: justify;
+      margin: 40px
+    }
+    .content {
+      color: rgb(237, 233, 233);
+      margin-top: 20px;
+      margin: 40px
+
     }
     .gallery {
       width: 100vw;
@@ -23,6 +40,7 @@
     .gallery img {
       width: 100%;
       height: auto;
+      border-radius: 10px;
       object-fit: cover;
       margin-bottom: 10px;
     }
@@ -62,6 +80,15 @@
 </head>
 <body bgcolor=black>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <div class="header">
+      <h1>{{ column }} - {{ girl }}</h1>
+  </div>
+  <div class="timestamp">
+      {{ keywords }}
+  </div>
+  <div class="content">
+    {{ description }}
+  </div>
     <div id="navbar">
         sddsfsfs
         <a href="javascript:void(0)"  onclick="delete()">delete</a>
@@ -70,7 +97,7 @@
   <div class="gallery">
     {% for image in images %}
         <div class="img-contain">
-            <img src="{{ url_for('static', filename='image/' +  image ) }}" alt="描述">
+            <img src="{{ url_for('static', filename='images/albumn/' +  image ) }}" alt="描述">
         </div>
     {% endfor %}
   </div>
@@ -160,7 +187,7 @@
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            alert('Item Deleted Successfully!');
+            window.location.href = '/'; // 正确的重定向方法
         })
         .catch((error) => {
             console.error('Error:', error);

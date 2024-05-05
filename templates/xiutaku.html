@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIRLS</title>
-    <link rel="manifest" href="{{ url_for('static', filename='girlmainfest.json') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='mainfest.json') }}">
     <style>
         /* 基础样式重置 */
         * {
@@ -16,6 +16,7 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            background-color: black;
         }
 
         /* 导航栏样式 */
@@ -124,10 +125,9 @@
         }
 
         .game-card {
-            background-color: #fff;
+            background-color:black;
             border-radius: 8px;
-            margin: 10px;
-            padding: 15px;
+            margin :10px;
             width: 160px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             text-align: center;
@@ -135,14 +135,15 @@
 
         .game-card img {
             width: 100%;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 3 / 5;
             object-fit: cover; /* 保持纵横比，同时填充整个元素的内容框 */
             border-radius: 8px;
         }
 
         .game-title {
-            font-weight: bold;
+            font-weight: lighter;
             margin: 10px 0;
+            color: antiquewhite;
         }
         .game-title img {
             height: 1em; /* 设置图片高度与当前字体大小相同 */
@@ -191,6 +192,8 @@
                 </a>
             </div>
             <div class="navbar-menu">
+                <a class="navbar-item" href="/new">最新</a>
+                <a class="navbar-item" href="/main">主要</a>
                 <a class="navbar-item" href="/hot">热门</a>
                 <a class="navbar-item" href="/girl">模特</a>
             </div>
@@ -201,15 +204,16 @@
         <div class="app-container">
             {% for info in infos %} 
                 <div class="game-card" onclick="toggleSelect(this)">
-                    <a href="xiutakugirl/{{ info }} ">
-                        <img src="{{ url_for('static', filename='prealbumn/' +  info + '.jpg' ) }}" alt="Chatgpt app">
+                    <a href="xiutakugirl/{{ info['info'] }} ">
+                        <img src="{{ url_for('static', filename='images/preview/' +  info.get('info', 'default') + '.webp' ) }}" alt="Chatgpt app">
                     </a>
-
                     <div class="game-title"> 
-                        {{ info }} 
+                        <p>{{ info['column'] }}</p>
+                        {{ info['name'] }} 
                     </div>
                     <p class="game-description" contenteditable="true" code="{{info['code']}}"> {{info['comment']}} </p>
                 </div>
+
             {% endfor %}
         </div>
         <nav class="pagination">
